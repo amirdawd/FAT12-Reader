@@ -1,4 +1,3 @@
-
 hex_file = open('image.dat', 'rb')
 data = []
 data = hex_file.read().hex()
@@ -34,7 +33,52 @@ DATA_region= []
 for x in range(16896,len(ByteList)): #Data Region starts at the 33th sector
     DATA_region.append(ByteList[x])
 
+Root_Directory= []
+for x in range(9728, 16895):
+    Root_Directory.append(ByteList[x])
 
-print(DATA_region[33]) #Test
+Dir_File_Name= []
+Dir_Extension=[]
+Dir_Attributes= []
+Dir_Reserved= []
+Dir_CreationTime=[]
+Dir_Creation_Date=[]
+Dir_Last_Acess_Date=[]
+Dir_Last_Write_Time=[]
+Dir_Last_Write_Date=[]
+Dir_First_Logical_Cluster=[]
+Dir_File_Size=[]
+
+def range1(start, end):
+    return range(start,end+1)
+
+
+
+def createList(list, start, finish):
+    for x in range1(start+608, finish+608):
+        list.append(Root_Directory[x])
+
+
+
+createList(Dir_File_Name,0,7)
+createList(Dir_Extension,8,10)
+createList(Dir_Attributes,11,11)
+createList(Dir_Reserved,12,13)
+createList(Dir_CreationTime,14,15)
+createList(Dir_Creation_Date,16, 17)
+createList(Dir_Last_Acess_Date,18,19)
+createList(Dir_Last_Write_Time,22,23)
+createList(Dir_Last_Write_Date,24,25)
+createList(Dir_First_Logical_Cluster,26,27)
+createList(Dir_File_Size,28,31)
+
+
+print(FAT_Region_1)
+print(FAT_Region_2)
+
+print(Dir_File_Size)
+
+
+
 
 

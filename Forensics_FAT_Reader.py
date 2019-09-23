@@ -55,7 +55,7 @@ def range1(start, end):
 
 
 def createList(list, start, finish):
-    for x in range1(start+608, finish+608):
+    for x in range1(start+224, finish+224):
         list.append(Root_Directory[x])
 
 
@@ -78,7 +78,16 @@ print(FAT_Region_2)
 
 print(Dir_File_Size)
 
+zip_File= []
+for x in range1(148992,157225):
+    zip_File.append(ByteList[x])
+
+new_file = open("./" + "hello1" ,"wb+" )
+
+for x in zip_File:
+    s = bytearray(x, encoding='utf32')
+    new_file.write(s)
 
 
-
-
+for x in range1(39,42):
+    print(bootSector[x])
